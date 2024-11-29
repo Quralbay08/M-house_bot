@@ -8,27 +8,38 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ParseMode
 import re,os
-from M_house.keep_alive import keep_alive
-keep_alive()
+# from M_house.keep_alive import keep_alive
+from aiogram.utils.executor import start_webhook
+# keep_alive()
 
 #<--------bots data--------->
-result = []
+
 # token = '6667524460:AAHvxu5j0R_9trNtTwtJCJQY7a0b73zxF38'
+
+
+# .env faylni yuklash
+from dotenv import load_dotenv
+load_dotenv()
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+WEBHOOK_URL = f"https://m-house-bot.onrender.com/webhook"
+WEBAPP_HOST = '0.0.0.0'
+WEBAPP_PORT = int(os.getenv("PORT", 5000))
 storage = MemoryStorage()
-bot = Bot(token=os.environ.get('TOKEN'))
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot,storage=storage)
 admin_id =  [5773032217,7580114812]
 
+result = []
 
-
-async def on_startup(_):
-    global admin_id
+# async def on_startup(_):
+    # global admin_id
     # admin_id = 5570471897
     # await bot.send_message(
     #     chat_id=admin_id,
     #     text='Botqa zapusk berildi',
     # )
-    await datas.start_db()
+    # await datas.start_db()
 
 
 #<---------------admin function----------------->
@@ -1226,10 +1237,20 @@ async def send_work_menu(call: types.CallbackQuery):
 
 
        
-            
+async def on_startup(dispatcher):
+    await bot.set_webhook(WEBHOOK_URL)
+    await datas.start_db()
 
+async def on_shutdown(dispatcher):
+    await bot.delete_webhook()
 
-
-if __name__=='__main__':
-    executor.start_polling(dp,skip_updates=True,on_startup=on_startup)
+if __name__ == '__main__':
+    start_webhook(
+        dispatcher=dp,
+        webhook_path='/webhook',
+        on_startup=on_startup,
+        on_shutdown=on_shutdown,
+        host=WEBAPP_HOST,
+        port=WEBAPP_PORT,
+    )
 
