@@ -9,14 +9,15 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ParseMode
-import re
-
+import re,os
+from keep_alive import keep_alive
+keep_alive()
 
 #<--------bots data--------->
 result = []
-api = '6667524460:AAHvxu5j0R_9trNtTwtJCJQY7a0b73zxF38'
+token = '6667524460:AAHvxu5j0R_9trNtTwtJCJQY7a0b73zxF38'
 storage = MemoryStorage()
-bot = Bot(api)
+bot = Bot(token=os.environ.get(token))
 dp = Dispatcher(bot,storage=storage)
 admin_id =  [5773032217,7580114812]
 
