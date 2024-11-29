@@ -1,6 +1,6 @@
 from aiogram.types import KeyboardButton,ReplyKeyboardMarkup
 from aiogram.types import InlineKeyboardButton,InlineKeyboardMarkup
-from datas import cur
+from M_house.datas import cur
 
 admin_menu = ReplyKeyboardMarkup(resize_keyboard=True)
 admin_menu.add(KeyboardButton(text='Jumısshılardı kóriw'))
