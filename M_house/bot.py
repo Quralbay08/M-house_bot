@@ -1,9 +1,7 @@
 #<----------from and import---------->
 
 from aiogram import types,Bot,Dispatcher,executor
-import datas
-import user_btn
-import admin_btn
+from M_house import datas,user_btn,admin_btn
 from aiogram.types import KeyboardButton,ReplyKeyboardMarkup,InlineKeyboardButton,InlineKeyboardMarkup
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
