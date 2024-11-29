@@ -13,9 +13,9 @@ keep_alive()
 
 #<--------bots data--------->
 result = []
-token = '6667524460:AAHvxu5j0R_9trNtTwtJCJQY7a0b73zxF38'
+# token = '6667524460:AAHvxu5j0R_9trNtTwtJCJQY7a0b73zxF38'
 storage = MemoryStorage()
-bot = Bot(token=os.environ.get(token))
+bot = Bot(token=os.environ.get('6667524460:AAHvxu5j0R_9trNtTwtJCJQY7a0b73zxF38'))
 dp = Dispatcher(bot,storage=storage)
 admin_id =  [5773032217,7580114812]
 
