@@ -192,7 +192,7 @@ async def process_new_debt_amount(message: types.Message, state: FSMContext):
         
     
 #<-------delete about worker--------->
-from datas import cur
+from M_house.datas import cur
 
 async def show_about_workers():
     cur.execute('SELECT * FROM about_worker')
